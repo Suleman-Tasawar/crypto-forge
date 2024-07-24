@@ -1,10 +1,8 @@
 import React from 'react'
 
-const Coins = () => {
+function Coins() {
   return (
-    <div>
-      Coins
-    </div>
+    <div>Coins</div>
   )
 }
 

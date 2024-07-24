@@ -1,11 +1,15 @@
 import React from "react";
-// import Carousel from "react-material-ui-carousel";
-// import TrendingNews from '../components/TrendingNews'
-// import CoinsCarousal from "../components/CoinsCarousal";
+import Carousel from "react-material-ui-carousel";
+import CoinsCarousal from "../components/CoinsCarousal";
+import { useContext } from "react";
+import { CryptoContext } from "../context/CryptoContext";
 
 import heroImg from "/assets/3d-casual-life-iphone-bitcoin.png";
+import News from "../components/News";
 
 const Home = () => {
+
+  const {data} = useContext(CryptoContext)
 
   return (
     <div>
@@ -27,8 +31,10 @@ const Home = () => {
         </div>
       </div>
       <div>
-        <h1 className="text-center">Add the data from the carousal on line#30</h1>
-        {/* <Carousel
+        {
+          data.length == 0 ?
+          <h2>Loading...</h2> :
+          <Carousel
           showArrows={true}
           showStatus={false}
           showThumbs={false}
@@ -42,29 +48,20 @@ const Home = () => {
             mt: 5,
           }}
         >
-        <CoinsCarousal 
-          coinImage = {}
-          coinName = {}
-          coinCurrentValue = {}
-          coinCurrentPrice = {}/>
-        </Carousel> */}
-
-        <div className="mt-5">
-          <h1 className="text-3xl font-black text-center text-red-600">
-            {/* See whats trending on the Crypto Market */}Add trending new on line 58
-          </h1>
-        </div>
-        {/* 
-        <TrendingNews 
-          newsLink={}
-          newsImg={}
-          newsTitle={}
-          newsText={}
-          newsCoinName={}
-          newsName={}
-          newsDate={}
-          /> 
-        */}
+        {
+          data.slice(0, 10).map((element) => {
+            return <CoinsCarousal 
+            key={element.id}
+            coinImage = {element.image}
+            coinName = {element.name}
+            coinCurrentValue = {element.current_price}
+            coinCurrentPrice = {element.price_change_percentage_24h}
+          />
+          })
+        }
+        </Carousel>
+        }
+        <News></News>
       </div>
     </div>
   );

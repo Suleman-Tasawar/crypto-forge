@@ -14,6 +14,7 @@ export function getGeneralData(setData, currency = 'usd')
 //     id,
 //     symbol,
 //     name,
+//     image,
 //     current_price,
 //     market_cap_rank,
 //     total_volume,

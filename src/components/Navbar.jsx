@@ -7,7 +7,7 @@ const Navbar = () => {
     <header className="sm:relative h-20 flex justify-center font-serif mt-5 shadow-md w-full">
       <Link to="/">
         <div>
-          <h3 className="text-xl w-full  font-semibold">Crypto Hunter</h3>
+          <h3 className="text-xl w-full ml-10  font-semibold">Crypto <br/> Hunter</h3>
         </div>
       </Link>
       <div onClick={()=>setToggler(!toggler)} className="lg:hidden md:block sm:block sm:ml-5 cursor-pointer">

@@ -5,18 +5,18 @@ import Home from "./routes/Home"
 import CoinsDetail from "./routes/CoinsDetail"
 import Account from "./routes/Account"
 import NotFound from "./routes/NotFound"
-import News from "./components/News"
 import Coins from "./routes/Coins"
 import { getGeneralData, getHistoricalData, getNewsData } from "./utils/api"
 import { CryptoContext } from "./context/CryptoContext"
 
 function App() {
 
-  const {news, setNews} = useContext(CryptoContext)
+  const {setData, setNews} = useContext(CryptoContext)
 
-  // useEffect(() => {
-  //   getNewsData(setNews)
-  // }, [])
+  useEffect(() => {
+    getGeneralData(setData)
+    getNewsData(setNews)
+  }, [])
 
   return (
     <div>

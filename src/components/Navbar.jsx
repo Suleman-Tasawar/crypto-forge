@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-import { NavLink,Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
+import { Button } from "@mui/material";
 
 const Navbar = () => {
   const [toggler,setToggler] = useState(false)
+  const navigate = useNavigate()
+
   return (
-    <header className="sm:relative h-20 flex justify-center font-serif mt-5 shadow-md w-full">
+    <header className="sm:relative h-20 flex justify-center font-serif mt-5 shadow-md w-full px-[2.5rem]">
       <Link to="/">
         <div>
-          <h3 className="text-xl w-full ml-10  font-semibold">Crypto <br/> Hunter</h3>
+          <h3 className="text-xl w-full font-semibold">Crypto <br/> Hunter</h3>
         </div>
       </Link>
       <div onClick={()=>setToggler(!toggler)} className="lg:hidden md:block sm:block sm:ml-5 cursor-pointer">
@@ -41,6 +44,11 @@ const Navbar = () => {
           Account
         </NavLink>
       </nav>
+      <div className="flex gap-[1rem] h-[3rem]">
+          <Button onClick={() => navigate('/LoginMenu/Register')} variant="outlined">Register</Button>
+          <Button onClick={() => navigate('/LoginMenu/Login')} variant="outlined">Login</Button>
+      </div>
+
     </header>
   );
 };

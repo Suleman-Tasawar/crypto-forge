@@ -6,6 +6,7 @@ import { CryptoContext } from "../context/CryptoContext";
 
 import heroImg from "/assets/3d-casual-life-iphone-bitcoin.png";
 import News from "../components/News";
+import { CircularProgress } from "@mui/material";
 
 const Home = () => {
 
@@ -33,7 +34,7 @@ const Home = () => {
       <div>
         {
           data.length == 0 ?
-          <h2>Loading...</h2> :
+          <CircularProgress/> :
           <Carousel
           showArrows={true}
           showStatus={false}

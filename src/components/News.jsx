@@ -3,6 +3,7 @@ import { useContext } from "react";
 import TrendingNews from '../components/TrendingNews'
 import { CryptoContext } from "../context/CryptoContext";
 import GeneralPagination from './GeneralPagination';
+import { CircularProgress } from '@mui/material';
 
 function News() {
 
@@ -22,7 +23,7 @@ function News() {
       <div className="mt-5">
             {
               news.length == 0 ?
-              <h2>Loading...</h2> :
+              <CircularProgress/> :
               <GeneralPagination data={NewsData} />
             }
           </div>

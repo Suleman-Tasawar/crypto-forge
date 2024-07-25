@@ -11,11 +11,12 @@ import { CryptoContext } from "./context/CryptoContext"
 
 function App() {
 
-  const {setData, setNews} = useContext(CryptoContext)
+  const {setData, setNews,setGraph} = useContext(CryptoContext)
 
   useEffect(() => {
     getGeneralData(setData)
     getNewsData(setNews)
+    getHistoricalData(setGraph)
   }, [])
 
   return (
@@ -25,7 +26,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home/>}></Route>
           <Route path="/coins" element={<Coins/>}></Route>
-          <Route path="/coinsdetail:id" element={<CoinsDetail/>}></Route>
+          <Route path="/coinsdetail/:id" element={<CoinsDetail/>}></Route>
           <Route path="/account" element={<Account/>}></Route>
           <Route path="/*" element={<NotFound/>}></Route>
         </Routes>

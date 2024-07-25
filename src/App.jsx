@@ -8,6 +8,8 @@ import NotFound from "./routes/NotFound"
 import Coins from "./routes/Coins"
 import { getGeneralData, getHistoricalData, getNewsData } from "./utils/api"
 import { CryptoContext } from "./context/CryptoContext"
+import RegistrationContextProvider from "./context/RegistrationContext"
+import LoginMenu from "./routes/LoginMenu"
 
 function App() {
 
@@ -22,13 +24,16 @@ function App() {
     <div>
       <BrowserRouter>
         <Navbar/>
-        <Routes>
-          <Route path="/" element={<Home/>}></Route>
-          <Route path="/coins" element={<Coins/>}></Route>
-          <Route path="/coinsdetail:id" element={<CoinsDetail/>}></Route>
-          <Route path="/account" element={<Account/>}></Route>
-          <Route path="/*" element={<NotFound/>}></Route>
-        </Routes>
+        <RegistrationContextProvider>
+          <Routes>
+            <Route path="/" element={<Home/>}></Route>
+            <Route path="/coins" element={<Coins/>}></Route>
+            <Route path="/coinsdetail:id" element={<CoinsDetail/>}></Route>
+            <Route path="/account" element={<Account/>}></Route>
+            <Route path="/LoginMenu/:type" element={<LoginMenu/>}></Route>
+            <Route path="/*" element={<NotFound/>}></Route>
+          </Routes>
+        </RegistrationContextProvider>
       </BrowserRouter>
     </div>
   )

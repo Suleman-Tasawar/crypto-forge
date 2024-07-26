@@ -3,7 +3,6 @@ import Carousel from "react-material-ui-carousel";
 import CoinsCarousal from "../components/CoinsCarousal";
 import { useContext } from "react";
 import { CryptoContext } from "../context/CryptoContext";
-
 import heroImg from "/assets/3d-casual-life-iphone-bitcoin.png";
 import News from "../components/News";
 import { CircularProgress } from "@mui/material";
@@ -13,32 +12,34 @@ const Home = () => {
   const {data} = useContext(CryptoContext)
 
   return (
-    <div>
-      <div className="w-full my-10 flex lg:flex-row md:flex-col-reverse sm:flex-col-reverse justify-center items-center">
-        <div className="lg:w-[40%] md:w-[60%] sm:w-[80%] p-5">
+    <div className="h-dvh">
+      <div className="w-full h-[70dvh] flex lg:flex-row md:flex-col-reverse sm:flex-col-reverse justify-center items-center">
+        <div className="lg:w-[40%] md:w-[50%] sm:w-[80%] p-5">
           <h1 className="text-6xl text-red-500 font-bold">
-            Searching for a place to get all your querries about Crypto Coins.
+            Searching for a place to get all your querries about Crypto Coins, look no further.
           </h1>
-          <button className="mt-10 w-[150px] h-10 bg-red-700 text-white hover:bg-red-600 rounded-md ">
+          <button className="mt-[5rem] w-[150px] h-10 bg-red-700 text-white hover:bg-red-600 rounded-md ">
             View Coins
           </button>
         </div>
         <div className="lg:w-[60%] md:w-[50%] sm:w-[80%]">
           <img
-            className="w-full h-[300px] object-contain"
+            className="w-[40vw] ml-auto h-[300px] object-contain"
             src={heroImg}
             alt="hero image"
           />
         </div>
       </div>
-      <div>
+      <div className="carousal-container relative  h-[70dvh] bg-gray-800 text-clight-grey p-10">
+        <h1 className="text-5xl mb-28 text-center">Trending Coins</h1>
         {
           data.length == 0 ?
           <CircularProgress/> :
           <Carousel
-          showArrows={true}
           showStatus={false}
           showThumbs={false}
+          indicators={false}
+          navButtonsAlwaysVisible
           infiniteLoop={true}
           autoPlay={true}
           interval={2000}
@@ -62,8 +63,8 @@ const Home = () => {
         }
         </Carousel>
         }
-        <News></News>
       </div>
+        <News></News>
     </div>
   );
 };

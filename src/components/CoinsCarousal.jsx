@@ -8,16 +8,14 @@ and if it is >0 then green otherwise red
 */
 const CoinsCarousal = ({coinImage,coinName,coinCurrentValue,coinCurrentPrice}) => {
   return (
-    <div className='flex flex-col justify-center items-center'>
-      <div className='w-20 h-20'>
-        <img className='w-full h-full ' src={coinImage} alt="carousal image" />
+    <div className='w-[100%] flex flex-col justify-center items-center'>
+      <div className=''>
+        <img className='w-full h-full' src={coinImage} alt="carousal image" />
       </div>
-      <div>
+      <div className='p-5 flex flex-col items-center'>
         <span>{coinName}</span>
-        <span>{coinCurrentValue}</span>
-      </div>
-      <div>
-        {coinCurrentPrice}
+        <span>Current Price: {coinCurrentValue}</span>
+        <span>Current Price: {coinCurrentPrice}</span>
       </div>
     </div>
   )

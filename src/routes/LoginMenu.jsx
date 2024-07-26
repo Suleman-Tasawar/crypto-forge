@@ -2,6 +2,7 @@ import React from 'react'
 import Form from '../components/Form'
 import { useParams } from 'react-router-dom'
 
+
 function LoginMenu() {
 
     const { type } = useParams()

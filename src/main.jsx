@@ -7,7 +7,7 @@ import CryptoContextProvider from './context/CryptoContext.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <CryptoContextProvider>
-      <App />
+      <App classname="m-0 p-0" />
     </CryptoContextProvider>
   </React.StrictMode>,
 )

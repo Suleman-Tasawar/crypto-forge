@@ -20,7 +20,8 @@ function News() {
         /> })
 
     return (
-      <div className="mt-5">
+      <div className="p-10 bg-gray-800 text-clight-grey flex flex-col items-center gap-24">
+            <h2 className='text-5xl'>News</h2>
             {
               news.length == 0 ?
               <CircularProgress/> :

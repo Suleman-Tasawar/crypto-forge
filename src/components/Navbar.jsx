@@ -1,55 +1,55 @@
-import React, { useState } from "react";
-import { NavLink, Link, useNavigate } from "react-router-dom";
-import { Button } from "@mui/material";
+import React, { useState } from 'react';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Button } from '@mui/material';
 
-const Navbar = () => {
-  const [toggler,setToggler] = useState(false)
-  const navigate = useNavigate()
+function Navbar()
+{
+  const [toggler, setToggler] = useState(false);
+  const navigate = useNavigate();
 
   return (
-    <header className="sm:relative h-20 flex justify-center font-serif mt-5 shadow-md w-full px-[2.5rem]">
+    <nav className="sm:relative h-20 flex text-clight-grey justify-between items-center bg-csolid-blue font-serif shadow-md w-full px-[2.5rem] py-[1rem]">
       <Link to="/">
         <div>
-          <h3 className="text-xl w-full font-semibold">Crypto <br/> Hunter</h3>
+          <h3 className="text-xl w-full font-semibold font-[Verdana]">Crypto Forge</h3>
         </div>
       </Link>
-      <div onClick={()=>setToggler(!toggler)} className="lg:hidden md:block sm:block sm:ml-5 cursor-pointer">
-          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 50 50">
-    <path d="M 3 9 A 1.0001 1.0001 0 1 0 3 11 L 47 11 A 1.0001 1.0001 0 1 0 47 9 L 3 9 z M 3 24 A 1.0001 1.0001 0 1 0 3 26 L 47 26 A 1.0001 1.0001 0 1 0 47 24 L 3 24 z M 3 39 A 1.0001 1.0001 0 1 0 3 41 L 47 41 A 1.0001 1.0001 0 1 0 47 39 L 3 39 z"></path>
-    </svg>
+      <div onClick={() => setToggler(!toggler)} className="lg:hidden md:block sm:block sm:ml-5 cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 50 50">
+          <path d="M 3 9 A 1.0001 1.0001 0 1 0 3 11 L 47 11 A 1.0001 1.0001 0 1 0 47 9 L 3 9 z M 3 24 A 1.0001 1.0001 0 1 0 3 26 L 47 26 A 1.0001 1.0001 0 1 0 47 24 L 3 24 z M 3 39 A 1.0001 1.0001 0 1 0 3 41 L 47 41 A 1.0001 1.0001 0 1 0 47 39 L 3 39 z"></path>
+        </svg>
       </div>
-      <nav className={`mt-1.5 ml-16 ${toggler? "sm:flex lg:flex":"sm:hidden lg:flex"} lg:static md:absolute sm:absolute sm:text-center sm:top-12 sm:z-50 flex sm:flex-col md:flex-col lg:flex-row justify-center sm:bg-gray-900 md:bg-gray-900 lg:bg-white sm:text-white md:text-white lg:text-black sm:w-full sm:h-[300px] md:h-[350px] lg:h-auto sm:ml-0`}>
+      <div className={`lg:flex ${toggler ? "block" : "hidden"} flex-col justify-between gap-10 items-center lg:flex-row`}>
         <NavLink
-             className={({ isActive}) =>
-              `ml-5 sm:mt-5 ${isActive ? "underline" : "" }  `
-             }
+          className={({ isActive }) =>
+            ` ${isActive ? "underline" : ""} `
+          }
           to="/"
         >
           Home
         </NavLink>
         <NavLink
-          className={({ isActive}) =>
-           `ml-5 sm:mt-5 ${isActive ? "underline" : "" }  `
+          className={({ isActive }) =>
+            ` ${isActive ? "underline" : ""} `
           }
           to="/coins"
         >
           Coins
         </NavLink>
         <NavLink
-          className={({ isActive}) =>
-            `ml-5 sm:mt-5 ${isActive ? "underline" : "" }  `
-           }
+          className={({ isActive }) =>
+            ` ${isActive ? "underline" : ""} `
+          }
           to="/account"
         >
           Account
         </NavLink>
-      </nav>
-      <div className="flex gap-[1rem] h-[3rem]">
-          <Button onClick={() => navigate('/LoginMenu/Register')} variant="outlined">Register</Button>
-          <Button onClick={() => navigate('/LoginMenu/Login')} variant="outlined">Login</Button>
+        <div className="flex gap-[1rem] h-[3rem] mt-5 lg:mt-0">
+          <Button color="inherit" onClick={() => navigate('/LoginMenu/Register')} variant="outlined">Register</Button>
+          <Button color="inherit" onClick={() => navigate('/LoginMenu/Login')} variant="outlined">Login</Button>
+        </div>
       </div>
-
-    </header>
+    </nav>
   );
 };
 

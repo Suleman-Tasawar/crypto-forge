@@ -10,33 +10,53 @@ import { getGeneralData, getHistoricalData, getNewsData } from "./utils/api"
 import { CryptoContext } from "./context/CryptoContext"
 import RegistrationContextProvider from "./context/RegistrationContext"
 import LoginMenu from "./routes/LoginMenu"
+import { CircularProgress } from "@mui/material"
+import { useState } from "react"
 
 function App() {
 
-  const {setData, setNews,setGraph} = useContext(CryptoContext)
+  const {setData, setNews, setGraph } = useContext(CryptoContext)
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getGeneralData(setData)
-    getNewsData(setNews)
-    getHistoricalData(setGraph)
-  }, [])
+    const fetchData = async () => {
+      try {
+        await Promise.all([
+          getGeneralData(setData),
+          getNewsData(setNews),
+          getHistoricalData(setGraph),
+        ]);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  return (
-    <div>
-      <BrowserRouter>
-        <Navbar/>
-        <RegistrationContextProvider>
-          <Routes>
-            <Route path="/" element={<Home/>}></Route>
-            <Route path="/coins" element={<Coins/>}></Route>
-            <Route path="/coinsdetail/:id" element={<CoinsDetail/>}></Route>
-            <Route path="/account" element={<Account/>}></Route>
-            <Route path="/LoginMenu/:type" element={<LoginMenu/>}></Route>
-            <Route path="/*" element={<NotFound/>}></Route>
-          </Routes>
-        </RegistrationContextProvider>
-      </BrowserRouter>
-    </div>
+    fetchData();
+  }, [setData, setNews, setGraph]);
+
+  return (<>
+      {
+        loading ?
+        <CircularProgress /> : 
+        <div className="bg-gradient-to-b from-gray-800 from-30% to-gray-900 h-dvh">
+        <BrowserRouter>
+          <Navbar/>
+          <RegistrationContextProvider>
+            <Routes>
+              <Route path="/" element={<Home/>}></Route>
+              <Route path="/coins" element={<Coins/>}></Route>
+              <Route path="/coinsdetail/:id" element={<CoinsDetail/>}></Route>
+              <Route path="/account" element={<Account/>}></Route>
+              <Route path="/LoginMenu/:type" element={<LoginMenu/>}></Route>
+              <Route path="/*" element={<NotFound/>}></Route>
+            </Routes>
+          </RegistrationContextProvider>
+        </BrowserRouter>
+        </div>
+    }
+    </>
   )
 }
 

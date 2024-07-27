@@ -1,32 +1,39 @@
 import { Button, Card } from "@mui/material";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Navigate } from "react-router-dom";
 import { ID } from "appwrite";
-import Alert from "@mui/material/Alert";
-import PasswordField from "./PasswordField";
-import EmailField from "./EmailField";
 import { RegistrationContext } from "../context/RegistrationContext";
 import { useContext } from "react";
 import { account } from "../lib/auth";
+import { FormControl } from "@mui/material";
+import PasswordField from "./PasswordField";
+import EmailField from "./EmailField";
 
 function Form({ name }) {
-  const { passwordCorrect, emailCorrecct } = useContext(RegistrationContext);
-  const { email, password } = useContext(RegistrationContext);
+  const { passwordCorrect, emailCorrecct, email, password } =
+    useContext(RegistrationContext);
   const [submission, setSubmission] = useState(null);
   const [submissionText, setSubmissionText] = useState(name);
   const [error, setError] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
 
+  const  navigateToAccount= ()=>{
+    navigate("/account");
+  }
+
   const handleLogin = async () => {
     try {
       setSubmissionText("In Process");
       setSubmission(true);
       let responce = await account.createEmailPasswordSession(email, password);
-      localStorage.setItem("auth", true);
+      console.log(responce);
+      localStorage.setItem("auth", JSON.stringify(true));
+      console.log(localStorage.setItem("auth", JSON.stringify(responce.current)))
       setSubmission(false);
       setSubmissionText(name);
-      navigate('/account');
+      navigateToAccount()
+      console.log("works here")
     } catch (error) {
       setError(true);
       setErrorMessage(error.message || "An unknown error occurred");
@@ -49,7 +56,7 @@ function Form({ name }) {
         localStorage.setItem("authStatus", JSON.stringify(isAuthenticated));
         setSubmission(false);
         setSubmissionText(name);
-        navigate('/account');
+        navigateToAccount()
       } else {
         return userAccount;
       }
@@ -60,23 +67,25 @@ function Form({ name }) {
   };
 
   return (
-   <Card className='flex flex-col items-center justify-center m-[5rem] gap-5 w-[30rem] px-24 py-10'>
+    <Card className="flex flex-col items-center justify-center m-[5rem] gap-5 w-[30rem] px-24 py-10">
       <h2 className="text-2xl font-semibold">{name}</h2>
-      <EmailField />
-      <PasswordField />
-      <Button
-        onClick={name === "Login" ? handleLogin : handleRegistration}
-        disabled={!passwordCorrect && !emailCorrecct && submission == true}
-        style={{ marginTop: "2rem" }}
-        variant="outlined"
-      >
-        {submissionText}
-      </Button>
-      {submission ? (
-        <Alert variant="filled" severity="success">
-          {name} sucess
-        </Alert>
+      {error ? (
+        <p className="text-sm italic text-red-500 font-semibold">
+          {errorMessage}
+        </p>
       ) : null}
+      <FormControl>
+        <EmailField />
+        <PasswordField />
+        <Button
+          onClick={name === "Login" ? handleLogin : handleRegistration}
+          disabled={!passwordCorrect && !emailCorrecct && submission == true}
+          style={{ marginTop: "2rem", width: "150px", height: "35px" }}
+          variant="outlined"
+        >
+          {submissionText}
+        </Button>
+      </FormControl>
     </Card>
   );
 }

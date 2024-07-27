@@ -1,5 +1,13 @@
+import { useState } from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { useEffect, useContext } from "react"
+import { getGeneralData, getHistoricalData, getNewsData } from "./utils/api"
+import { CryptoContext } from "./context/CryptoContext"
+import { CircularProgress } from "@mui/material"
+import Navbar from "./components/Navbar"
+
 import Navbar from "./components/NavBar"
+
 import Home from "./routes/Home"
 import CoinsDetail from "./routes/CoinsDetail"
 import Account from "./routes/Account"
@@ -13,6 +21,11 @@ function App() {
 
   return (<>
       {
+
+        loading ?
+        <CircularProgress /> : 
+        <div className="bg-gradient-to-b from-gray-800 from-30% to-gray-900 h-dvh font-mono">
+
         <div className="bg-gradient-to-b from-gray-800 from-30% to-gray-900 h-dvh">
         <BrowserRouter>
           <Navbar/>

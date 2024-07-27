@@ -1,46 +1,18 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import { useEffect, useContext } from "react"
-import Navbar from "./components/Navbar"
+import Navbar from "./components/NavBar"
 import Home from "./routes/Home"
 import CoinsDetail from "./routes/CoinsDetail"
 import Account from "./routes/Account"
 import NotFound from "./routes/NotFound"
 import Coins from "./routes/Coins"
-import { getGeneralData, getHistoricalData, getNewsData } from "./utils/api"
-import { CryptoContext } from "./context/CryptoContext"
 import RegistrationContextProvider from "./context/RegistrationContext"
 import LoginMenu from "./routes/LoginMenu"
-import { CircularProgress } from "@mui/material"
-import { useState } from "react"
 import RestrictedRoute from "./components/RestrictedRoute"
 
 function App() {
 
-  const {setData, setNews, setGraph } = useContext(CryptoContext)
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        await Promise.all([
-          getGeneralData(setData),
-          getNewsData(setNews),
-          getHistoricalData(setGraph),
-        ]);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [setData, setNews, setGraph]);
-
   return (<>
       {
-        loading ?
-        <CircularProgress /> : 
         <div className="bg-gradient-to-b from-gray-800 from-30% to-gray-900 h-dvh">
         <BrowserRouter>
           <Navbar/>

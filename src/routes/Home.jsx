@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Carousel from "react-material-ui-carousel";
 import CoinsCarousal from "../components/CoinsCarousal";
 import { useContext } from "react";
@@ -6,10 +6,16 @@ import { CryptoContext } from "../context/CryptoContext";
 import heroImg from "/assets/3d-casual-life-iphone-bitcoin.png";
 import News from "../components/News";
 import { CircularProgress } from "@mui/material";
+import { getGeneralData, getNewsData } from "../utils/api"
 
 const Home = () => {
 
-  const {data} = useContext(CryptoContext)
+  const {data, setData, setNews} = useContext(CryptoContext)
+
+  useEffect(() => {
+    getGeneralData(setData)
+    getNewsData(setNews)
+  }, [])
 
   return (
     <div className="h-dvh">

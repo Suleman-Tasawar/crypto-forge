@@ -8,10 +8,17 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { CryptoContext } from '../context/CryptoContext'
+import { useEffect } from 'react';
+import { getHistoricalData } from '../utils/api';
 
 function Coins() {
 
-  const {data} = useContext(CryptoContext)
+  const {data, setGraph} = useContext(CryptoContext)
+
+  useEffect(() => {
+    getHistoricalData(setGraph)
+  }, [])
+
   return (
     // <Pagination data={CoinData}/>
     <TableContainer component={Paper}>

@@ -52,10 +52,9 @@ function Navbar()
           <Button color="inherit" onClick={() => navigate('/LoginMenu/Register')} variant="outlined">Register</Button>
           <Button color="inherit" onClick={() => navigate('/LoginMenu/Login')} variant="outlined">Login</Button>
         </div>
+        </nav>
       </div>
     </nav>
-      </nav>
-    </header>
   );
 };
 

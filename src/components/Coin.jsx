@@ -1,7 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { ID } from "appwrite";
+import { databases } from "../lib/database";
 
-function Coin({ image, name, price, totalVolume, change }) {
-  
+function Coin({ id,image, name, price, totalVolume, change }) {
+  const addToWishList = ()=>{
+    const promise = databases.createDocument(
+      import.meta.env.VITE_APP_APPWRITE_DATABASE_ID,
+      import.meta.env.VITE_APP_APPWRITE_COLLECTION_ID,
+      ID.unique(),
+      { "coinId": id}
+  );
+  promise.then(function (response) {
+    console.log(response);
+}, function (error) {
+    console.log(error);
+});
+  }
   return (
     <div className='m-10 flex flex-col text-white justify-center items-center text-center'>
         <div className='mt-2'><img src={image}></img></div>
@@ -18,7 +32,7 @@ function Coin({ image, name, price, totalVolume, change }) {
           <p className='text-lg font-medium'><h2 className='text-xl font-bold inline'>Total Volumes Available: </h2>{totalVolume}</p>
         </div>
         <div className='mt-2'>
-          <button className='w-[120px] h-11 bg-pink-950 text-white hover:bg-pink-900 rounded-sm'>Wish List</button>
+          <button onClick={addToWishList} className='w-[120px] h-11 bg-pink-950 text-white hover:bg-pink-900 rounded-sm'>Wish List</button>
         </div>
     </div>
   )

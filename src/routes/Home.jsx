@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom"
 import Carousel from "react-material-ui-carousel";
 import CoinsCarousal from "../components/CoinsCarousal";
 import { useContext } from "react";
@@ -13,14 +14,16 @@ const Home = () => {
 
   return (
     <div className="h-dvh">
-      <div className="w-full h-[70dvh] flex lg:flex-row md:flex-col-reverse sm:flex-col-reverse justify-center items-center">
-        <div className="lg:w-[40%] md:w-[50%] sm:w-[80%] p-5">
-          <h1 className="text-6xl text-red-500 font-bold">
+      <div className="w-full h-[80dvh]  flex lg:flex-row md:flex-col-reverse sm:flex-col-reverse justify-center items-center">
+        <div className="lg:w-[50%] md:w-[60%] sm:w-[80%] py-5 px-2">
+          <h1 className="lg:text-6xl md:text-5xl sm:text-4xl text-red-500 font-bold">
             Searching for a place to get all your querries about Crypto Coins, look no further.
           </h1>
-          <button className="mt-[5rem] w-[150px] h-10 bg-red-700 text-white hover:bg-red-600 rounded-md ">
-            View Coins
-          </button>
+          <Link to="/coins">
+            <button className="mt-[5rem] w-[150px] h-10 bg-red-700 text-white hover:bg-red-600 rounded-md ">
+              View Coins
+            </button>
+          </Link>
         </div>
         <div className="lg:w-[60%] md:w-[50%] sm:w-[80%]">
           <img

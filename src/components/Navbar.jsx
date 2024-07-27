@@ -42,6 +42,7 @@ function Navbar() {
             toggler ? "sm:flex md:flex lg:flex" : "sm:hidden md:hidden lg:flex"
           } lg:static md:absolute sm:absolute sm:text-center  sm:top-14 md:top-14 sm:left-0 md:left-0  sm:z-50 flex sm:flex-col md:flex-col lg:flex-row justify-evenly items-center bg-csolid-blue text-white sm:w-full sm:h-[300px] md:h-[350px] lg:h-auto sm:ml-0`}
         >
+
           <NavLink
             className={({ isActive }) => ` ${isActive ? "underline" : ""} ml-5`}
             to="/"
@@ -79,6 +80,33 @@ function Navbar() {
         </nav>
       </div>
     </header>
+
+          Home
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            ` ${isActive ? "underline" : ""} `
+          }
+          to="/coins"
+        >
+          Coins
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            ` ${isActive ? "underline" : ""} `
+          }
+          to="/account"
+        >
+          Account
+        </NavLink>
+        <div className="flex gap-[1rem] h-[3rem] mt-5 lg:mt-0">
+          <Button color="inherit" onClick={() => navigate('/LoginMenu/Register')} variant="outlined">Register</Button>
+          <Button color="inherit" onClick={() => navigate('/LoginMenu/Login')} variant="outlined">Login</Button>
+        </div>
+        </nav>
+      </div>
+    </nav>
+
   );
 }
 

@@ -80,33 +80,6 @@ function Navbar() {
         </nav>
       </div>
     </header>
-
-          Home
-        </NavLink>
-        <NavLink
-          className={({ isActive }) =>
-            ` ${isActive ? "underline" : ""} `
-          }
-          to="/coins"
-        >
-          Coins
-        </NavLink>
-        <NavLink
-          className={({ isActive }) =>
-            ` ${isActive ? "underline" : ""} `
-          }
-          to="/account"
-        >
-          Account
-        </NavLink>
-        <div className="flex gap-[1rem] h-[3rem] mt-5 lg:mt-0">
-          <Button color="inherit" onClick={() => navigate('/LoginMenu/Register')} variant="outlined">Register</Button>
-          <Button color="inherit" onClick={() => navigate('/LoginMenu/Login')} variant="outlined">Login</Button>
-        </div>
-        </nav>
-      </div>
-    </nav>
-
   );
 }
 

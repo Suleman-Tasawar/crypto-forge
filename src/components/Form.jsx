@@ -27,9 +27,7 @@ function Form({ name }) {
       setSubmissionText("In Process");
       setSubmission(true);
       let responce = await account.createEmailPasswordSession(email, password);
-      console.log(responce);
       localStorage.setItem("auth", JSON.stringify(true));
-      console.log(localStorage.setItem("auth", JSON.stringify(responce.current)))
       setSubmission(false);
       setSubmissionText(name);
       navigateToAccount()

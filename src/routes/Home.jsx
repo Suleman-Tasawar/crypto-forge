@@ -56,7 +56,6 @@ const Home = () => {
             maxWidth: "600px",
             flexGrow: 1,
             margin: "auto",
-            mt: 5,
           }}
         >
         {

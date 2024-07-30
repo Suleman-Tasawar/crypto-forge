@@ -20,7 +20,7 @@ function News() {
         /> })
 
     return (
-      <div className="p-16 bg-gray-800 text-clight-grey flex flex-col items-center gap-24">
+      <div className="mt-1 p-16 bg-coin-banner bg-center text-clight-grey flex flex-col items-center gap-24">
             <h2 className='mt-5 text-5xl'>News</h2>
             {
               news.length == 0 ?

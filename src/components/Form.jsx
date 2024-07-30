@@ -27,14 +27,18 @@ function Form({ name }) {
       setSubmissionText("In Process");
       setSubmission(true);
       let responce = await account.createEmailPasswordSession(email, password);
-      localStorage.setItem("auth", JSON.stringify(true));
-      setSubmission(false);
-      setSubmissionText(name);
-      navigateToAccount()
-      console.log("works here")
+      if(responce){
+        localStorage.setItem("auth", JSON.stringify(true));
+        setSubmission(false);
+        navigateToAccount()
+      }
     } catch (error) {
       setError(true);
       setErrorMessage(error.message || "An unknown error occurred");
+    }
+    finally{
+      setSubmissionText(name);
+
     }
   };
 

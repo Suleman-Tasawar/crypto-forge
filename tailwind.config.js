@@ -11,6 +11,9 @@ export default {
       'lg': '900px',
     },
     extend: {
+      backgroundImage: {
+        'coin-banner': "url('/src/assets/banner2.jpg')",
+      },
       colors: {
         'cdark-purple': '#1D2671',
         'cdark-blue': '#2B32B2',

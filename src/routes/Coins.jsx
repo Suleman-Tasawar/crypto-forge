@@ -17,7 +17,7 @@ function Coins() {
 
   useEffect(() => {
     getHistoricalData(setGraph)
-  }, [])
+  }, [data])
 
   return (
     // <Pagination data={CoinData}/>

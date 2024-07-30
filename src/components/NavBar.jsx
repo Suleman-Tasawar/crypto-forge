@@ -25,7 +25,7 @@ const Navbar = () => {
         } flex-col justify-between gap-10 items-center lg:flex-row`}
       >
         <nav
-          className={`mb-2${
+          className={`mb-5 ${
             toggler ? "sm:flex md:flex lg:flex" : "sm:hidden md:hidden lg:flex"
           } lg:static md:absolute sm:absolute sm:text-center  sm:top-14 md:top-14 sm:left-0 md:left-0  sm:z-50 flex sm:flex-col md:flex-col lg:flex-row justify-evenly items-center bg-csolid-blue text-white sm:w-full sm:h-[300px] md:h-[350px] lg:h-auto sm:ml-0`}
         >
@@ -53,11 +53,11 @@ const Navbar = () => {
         >
           Account
         </NavLink>
-      </nav>
-      <div className="flex gap-[1rem] h-[3rem]">
-          <Button onClick={() => navigate('/LoginMenu/Register')} variant="outlined">Register</Button>
+      <div className="flex lg:flex-row md:flex-row sm:flex-col justify-end items-center h-[3rem] lg:mt-5 md:mt-0 sm:mt-16">
+          <Button color="primary" onClick={() => navigate('/LoginMenu/Register')} variant="outlined">Register</Button>
           <Button onClick={() => navigate('/LoginMenu/Login')} variant="outlined">Login</Button>
       </div>
+      </nav>
       </div>
     </header>
   );

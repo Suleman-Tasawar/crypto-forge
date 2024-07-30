@@ -8,12 +8,21 @@ import { CircularProgress } from "@mui/material";
 const CoinsDetail = () => {
   const { data } = useContext(CryptoContext);
   const { id } = useParams();
-  const details = data.filter((details) => details.id == id.replace(":", ""));
+  let storedData = null;
+  try {
+    storedData = JSON.parse(localStorage.getItem("crypto"));
+  } catch (e) {
+    console.error("Failed to parse localStorage data", e);
+  }
+  
+  const coinData = data.length > 0 ? data : (storedData || []);
+  
+  const details = coinData?.filter((details) => details.id == id.replace(":", ""));
 
   return (
     <div className="flex lg:flex-row md:flex-row sm:flex-col justify-center items-center p-5">
       {details.length == 0 ? (
-        <CircularProgress />
+        <CircularProgress  />
       ) : (
         <>
           <Coin

@@ -5,6 +5,7 @@ export function getGeneralData(setData, currency = 'usd')
     axios.get(`/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=100&page=1`)
     .then(response => {
         setData(() => [...response.data])
+        localStorage.setItem("crypto",JSON.stringify(response.data))
     })
     .catch(err => console.error(err))
 }

@@ -19,9 +19,9 @@ const Home = () => {
   }, [])
 
   return (
-    <div className="h-dvh">
-      <div className="w-full h-[80dvh]  flex lg:flex-row md:flex-col-reverse sm:flex-col-reverse justify-center items-center">
-        <div className="lg:w-[50%] md:w-[60%] sm:w-[80%] py-5 px-2">
+    <div className="h-dvh bg-coin-banner bg-center">
+      <div className="w-full h-[100dvh]  flex lg:flex-row md:flex-col-reverse sm:flex-col-reverse justify-center items-center">
+        <div className="lg:w-[50%] md:w-[60%] sm:w-[80%] my-5 mx-2">
           <h1 className="lg:text-6xl md:text-5xl sm:text-4xl text-red-500 font-bold">
             Searching for a place to get all your querries about Crypto Coins, look no further.
           </h1>
@@ -39,7 +39,7 @@ const Home = () => {
           />
         </div>
       </div>
-      <div className="carousal-container relative  h-[70dvh] bg-gray-800 text-clight-grey p-10">
+      <div className="mt-1 carousal-container relative  h-[70dvh] bg-coin-banner bg-center text-clight-grey p-10">
         <h1 className="text-5xl mb-28 text-center">Trending Coins</h1>
         {
           data.length == 0 ?

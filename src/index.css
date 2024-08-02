@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.carousal-container:before{
+/* .carousal-container:before{
     content: "";
     position: absolute;
     width: 100%;
@@ -16,4 +16,4 @@
 
 .carousal-container{
     z-index: 1;
-}
+} */

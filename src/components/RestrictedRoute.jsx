@@ -1,11 +1,11 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
+import { AuthContext } from "../context/AuthContext";
 
 const RestrictedRoute = () => {
+    const { authStatus} = useContext(AuthContext);
     try {
-        const userStatus = JSON.parse(localStorage.getItem('authStatus'));
-
-        return userStatus ? <Outlet /> : <Navigate to="/loginMenu/Login" />;
+        return authStatus? <Outlet /> : <Navigate to="/loginMenu/Login" />;
     } catch (error) {
         console.error('Failed to retrieve or parse authentication status:', error);
     }

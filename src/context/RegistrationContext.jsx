@@ -24,6 +24,11 @@ export default function RegistrationContextProvider({children})
         setPasswordCorrect(e.target.value.length > 8 && e.target.value.length < 30)
     }
 
+    function clearFields(){
+        setEmail("")
+        setPassword("")
+    }
+
     return (
         <RegistrationContext.Provider value={{
             username, 
@@ -37,7 +42,8 @@ export default function RegistrationContextProvider({children})
             setEmailCorrect, 
             setPasswordCorrect,
             emailValidation,
-            passValidation
+            passValidation,
+            clearFields
             }}>
             {children}
         </RegistrationContext.Provider>

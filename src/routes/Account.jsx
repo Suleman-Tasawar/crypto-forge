@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 import { databases } from "../lib/database";
 
 const Account = () => {
   const [wishlistData, setWishlistData] = useState([]);
-  const [errorMessage,setErrorMessage] = useState(null)
-
+  const [errorMessage, setErrorMessage] = useState(null);
+  const { setAuthStatus } = useContext(AuthContext);
   const logout = () => {
     try {
-      localStorage.clear();
+      setAuthStatus(false);
     } catch (error) {
-      setErrorMessage(error || "Things have taken an unexpected turn here")
+      setErrorMessage(error || "Things have taken an unexpected turn here");
     }
   };
 
@@ -23,20 +24,20 @@ const Account = () => {
         setWishlistData(response.documents);
       },
       function (error) {
-        setErrorMessage(error)
+        setErrorMessage(error);
       }
     );
   }, []);
-  const wishData = wishlistData.map((data) => (
-    <div key={data.id}>
-      <p className="mt-5 text-white text-sm">{data.coinId}</p>
+  const wishDataID = wishlistData.map(id=>(
+    <div className="text-white" key={id.coinId}>
+      <p>{id.coinId}</p>
     </div>
-  ));
+  ))
   return (
     <div>
-      {/* {errorMessage?(<p className="text-sm italic text-red-500">{errorMessage}</p>):null} */}
       <div className="mt-5 flex  justify-evenly items-center">
         <div>
+          {errorMessage && <p className="text-sm italic text-red-500">{errorMessage}</p>}
           <h1 className="text-4xl text-blue-500 font-bold">Welcome </h1>
         </div>
         <div>
@@ -57,7 +58,7 @@ const Account = () => {
         </div>
         <div className="mt-5">
           {wishlistData.length > 0 ? (
-            <div>{wishData}</div>
+            <div>{wishDataID}</div>
           ) : (
             <p className="text-white">
               Nothing here try adding some to Wishlist

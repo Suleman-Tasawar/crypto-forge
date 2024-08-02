@@ -1,44 +1,52 @@
-import { Button, Card } from "@mui/material";
-import React, { useState } from "react";
-import { useNavigate,Navigate } from "react-router-dom";
+import React, { useEffect, useState ,useContext} from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { ID } from "appwrite";
 import { RegistrationContext } from "../context/RegistrationContext";
-import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 import { account } from "../lib/auth";
 import { FormControl } from "@mui/material";
+import { Button, Card } from "@mui/material";
 import PasswordField from "./PasswordField";
 import EmailField from "./EmailField";
 
 function Form({ name }) {
-  const { passwordCorrect, emailCorrecct, email, password } =
+  //getting the state from context api
+  const { passwordCorrect, emailCorrecct, email, password ,clearFields} =
     useContext(RegistrationContext);
+  const { authStatus, setAuthStatus } = useContext(AuthContext);
+  //hook for managing the page effectively
   const [submission, setSubmission] = useState(null);
   const [submissionText, setSubmissionText] = useState(name);
   const [error, setError] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
+  //react-router-dom navigate to redirect users
   const navigate = useNavigate();
 
-  const  navigateToAccount= ()=>{
+  const navigateToAccount = () => {
     navigate("/account");
-  }
+  };
 
-  const handleLogin = async () => {
+  const handleLogin = async (e) => {
+    e.preventDefault()
     try {
       setSubmissionText("In Process");
       setSubmission(true);
-      let responce = await account.createEmailPasswordSession(email, password);
-      if(responce){
-        localStorage.setItem("auth", JSON.stringify(true));
-        setSubmission(false);
-        navigateToAccount()
-      }
+      
+      let responce = await account.createEmailPasswordSession(
+        email,
+        password
+      );
+      if (responce) {
+          setAuthStatus(true);
+          setSubmission(false);
+          navigateToAccount();
+        }
     } catch (error) {
       setError(true);
       setErrorMessage(error.message || "An unknown error occurred");
-    }
-    finally{
+    } finally {
       setSubmissionText(name);
-
+      clearFields()
     }
   };
 
@@ -46,25 +54,29 @@ function Form({ name }) {
     try {
       setSubmissionText("In Process");
       setSubmission(true);
-      const nameReg = email.replace("@gmail.com", "");
-      const userAccount = await account.create(
-        ID.unique(),
-        email,
-        password,
-        nameReg
-      );
-      if (userAccount) {
-        const isAuthenticated = true;
-        localStorage.setItem("authStatus", JSON.stringify(isAuthenticated));
-        setSubmission(false);
-        setSubmissionText(name);
-        navigateToAccount()
-      } else {
-        return userAccount;
-      }
+
+        const nameReg = email.replace("@gmail.com", "");
+        const userAccount = await account.create(
+          ID.unique(),
+          email,
+          password,
+          nameReg
+        );
+        if (userAccount) {
+          setAuthStatus(true);
+          setSubmission(false);
+
+          navigateToAccount();
+        } else {
+          return userAccount;
+        }
     } catch (error) {
       setError(true);
       setErrorMessage(error.message || "An unknown error occurred");
+    }
+    finally{
+      setSubmissionText(name)
+      clearFields()
     }
   };
 
@@ -87,6 +99,11 @@ function Form({ name }) {
         >
           {submissionText}
         </Button>
+        <div className="mt-2 text-blue-600 underline">
+          {
+            name==="Register"?(<Link to="/LoginMenu/Login">login here?</Link>):(<Link to="/LoginMenu/Register">Register here?</Link>)
+          }
+        </div>
       </FormControl>
     </Card>
   );

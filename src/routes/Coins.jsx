@@ -1,4 +1,4 @@
-import React, {useContext } from 'react'
+import React, {useContext,useEffect } from 'react'
 import {Link} from "react-router-dom"
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -8,7 +8,6 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { CryptoContext } from '../context/CryptoContext'
-import { useEffect } from 'react';
 import { getHistoricalData } from '../utils/api';
 
 function Coins() {

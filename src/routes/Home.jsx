@@ -43,7 +43,7 @@ const Home = () => {
         <h1 className="text-5xl mb-28 text-center">Trending Coins</h1>
         {
           data.length == 0 ?
-          <CircularProgress/> :
+          <div className="flex justify-center items-center"><CircularProgress/> </div>:
           <Carousel
           showStatus={false}
           showThumbs={false}

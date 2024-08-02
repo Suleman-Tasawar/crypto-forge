@@ -13,7 +13,7 @@ const TrendingNews = ({newsLink,newsImg,newsTitle,newsText,newsAuthorName,newsNa
         <h2 className='mt-5 text-xl font-bold'>{newsTitle}</h2>
         <p className='mt-5 text-base'>{newsText}</p>
         <a className='mt-5 hover:text-gray-100 text-gray-200 hover:underline hover:font-bold hover:transition-all' href={newsLink}>Visit Site</a>
-        <div className='mt-5'>
+        <div className='mt-5 w-[90%]'>
           <span className='mt-5 w-5 h-3 bg-gray-800 rounded-sm text-white p-1'>{newsAuthorName == null ? "Unknown" : newsAuthorName}</span>
           <span className='mt-5 ml-2 font-semibold'>{newsName}</span>
           <span className='mt-5 ml-2 font-medium'>{date}</span>

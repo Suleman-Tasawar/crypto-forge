@@ -9,6 +9,8 @@ git clone <repo url>
 
 ```
 
+Add a env file and check the .dev.env file for keys description
+
 
 Setting up the project:
 
@@ -21,5 +23,13 @@ Running on local host:
 
 ```
 npm run dev
+
+```
+
+
+Building:
+
+```
+npm run build
 
 ```

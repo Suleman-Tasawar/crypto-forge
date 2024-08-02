@@ -9,7 +9,7 @@ const Navbar = () => {
     <header className="sm:relative h-20 flex text-clight-grey justify-between items-center bg-csolid-blue font-serif shadow-md w-full px-[2.5rem] py-[1rem]">
       <Link to="/">
         <div>
-          <h3 className="text-xl w-full  font-semibold">Crypto Hunter</h3>
+          <h3 className="text-xl w-full  font-semibold">Crypto Hunts</h3>
         </div>
       </Link>
 
@@ -53,7 +53,7 @@ const Navbar = () => {
         >
           Account
         </NavLink>
-      <div className="flex lg:flex-row md:flex-row sm:flex-col justify-end items-center h-[3rem] lg:mt-5 md:mt-0 sm:mt-16">
+      <div className="lg:ml-5 md:ml-5 sm:ml-0 flex lg:flex-row md:flex-row sm:flex-col justify-end items-center h-[3rem] lg:mt-5 md:mt-0 sm:mt-16">
           <Button color="primary" onClick={() => navigate('/LoginMenu/Register')} variant="outlined">Register</Button>
           <Button onClick={() => navigate('/LoginMenu/Login')} variant="outlined">Login</Button>
       </div>

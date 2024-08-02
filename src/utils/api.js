@@ -10,20 +10,7 @@ export function getGeneralData(setData, currency = 'usd')
     .catch(err => console.error(err))
 }
 
-//response: {
-// data: [{
-//     id,
-//     symbol,
-//     name,
-//     image,
-//     current_price,
-//     market_cap_rank,
-//     total_volume,
-//     price_change_percentage_24h,
-// }]
-//}
-
-export function getHistoricalData(setGraph, coin = "bitcoin", timeframe = 30, currency = 'usd')
+export function getHistoricalData(setGraph, coin = "bitcoin", timeframe = 30, currency = "usd")
 {
     axios.get(`https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=${currency}&days=${timeframe}`)
     .then(response => {
@@ -31,30 +18,6 @@ export function getHistoricalData(setGraph, coin = "bitcoin", timeframe = 30, cu
     })
     .catch(err => console.error(err))
 }
-// response: {
-    // data: {
-    //   "prices": [
-    //     [1625270400000, 2000.35],
-    //     [1625356800000, 2100.50],
-    //     ...
-    //
-    //   ],
-    //   "market_caps": [
-    //     [1625270400000, 234567890000],
-    //     [1625356800000, 245678900000],
-    //     ...
-    //
-    //   ],
-    //   "total_volumes": [
-    //     [1625270400000, 3456789000],
-    //     [1625356800000, 4567890000],
-    //     ...
-    //
-    //   ]
-    // }
-// }
-// arrays contain timestamps and price
-
 
 export function getNewsData(setNews, page=1)
 {
@@ -64,19 +27,3 @@ export function getNewsData(setNews, page=1)
     })
     .catch(err => console.error(err))
 }
-
-// response: {
-    // data: {
-    //  data: [
-    //      {
-    //        title
-    //        description,
-    //        author,
-    //        url,
-    //        updated_at,
-    //        news_site,
-    //        thumb_2x
-    //      },
-    //    ]
-    // }
-// }
